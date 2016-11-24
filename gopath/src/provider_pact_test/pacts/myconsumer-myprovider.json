@@ -6,25 +6,7 @@
     "name": "MyProvider"
   },
   "interactions": [
-    {
-      "description": "Some name for the test",
-      "request": {
-        "method": "GET",
-        "path": "/test.json",
-        "headers": {
-          "Content-Type": "application/json"
-        }
-      },
-      "response": {
-        "status": 200,
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": {
-          "foo": "bar"
-        }
-      }
-    }
+
   ],
   "metadata": {
     "pactSpecificationVersion": "2.0.0"

@@ -16,12 +16,14 @@ func main() {
         Port:     6666,
         Consumer: "MyConsumer",
         Provider: "MyProvider",
+
     }
     defer pact.Teardown()
 
     err := pact.VerifyProvider(types.VerifyRequest{
         ProviderBaseURL:        "http://localhost:32000",
         PactURLs:               []string{"/home/daniel/dev/ws_gobama/pact-playground/gopath/src/provider_pact_test/pacts/myconsumer-myprovider.json"},
+
     })
 
     if err != nil {
