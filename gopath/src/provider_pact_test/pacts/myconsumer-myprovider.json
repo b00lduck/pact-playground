@@ -1,0 +1,14 @@
+{
+  "consumer": {
+    "name": "MyConsumer"
+  },
+  "provider": {
+    "name": "MyProvider"
+  },
+  "interactions": [
+
+  ],
+  "metadata": {
+    "pactSpecificationVersion": "2.0.0"
+  }
+}
