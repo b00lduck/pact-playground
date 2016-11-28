@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestMain(m *testing.M) {
+func TestFoo(m *testing.T) {
 
 	go provider.StartInstrumented("32000")
 
@@ -23,7 +23,6 @@ func TestMain(m *testing.M) {
 	err := pact.VerifyProvider(types.VerifyRequest{
 		ProviderBaseURL:        "http://localhost:32000",
 		BrokerURL:		"http://localhost",
-		//PactURLs:               []string{"/home/daniel/dev/ws_gobama/pact-playground/gopath/src/provider_pact_test/pacts/myconsumer-myprovider.json"},
 	})
 
 	if err != nil {
