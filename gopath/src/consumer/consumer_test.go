@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"net/http/httptest"
 	"os"
 	"strings"
 	"testing"
@@ -16,28 +15,24 @@ var dir, _ = os.Getwd()
 var pactDir = fmt.Sprintf("%s/../../pacts", dir)
 var logDir = fmt.Sprintf("%s/log", dir)
 var pact dsl.Pact
-var rr http.ResponseWriter
 var req *http.Request
 
-// Use this to control the setup and teardown of Pact
 func TestMain(m *testing.M) {
-	// Setup Pact and related test stuff
+
 	setup()
 
-	// Run all the tests
 	code := m.Run()
 
-	// Shutdown the Mock Service and Write pact files to disk
-
+	// Write
 	pact.WritePact()
 
+	// Publish the PACT to the PACT broker
 	pr := types.PublishRequest{
 		PactBroker:             "http://localhost",
 		PactURLs:               []string{"../../pacts/myconsumer-myprovider.json"},
 		ConsumerVersion:        "1.0.0",
 		Tags:                   []string{"latest", "dev"},
 	}
-
 	pb := dsl.Publisher{}
 	err := pb.Publish(pr)
 	if err != nil {
@@ -57,9 +52,6 @@ func setup() {
 	// Create a request to pass to our handler.
 	req, _ = http.NewRequest("POST", "/login", strings.NewReader(""))
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-
-	// Record response (satisfies http.ResponseWriter)
-	rr = httptest.NewRecorder()
 }
 
 // Create Pact connecting to local Daemon

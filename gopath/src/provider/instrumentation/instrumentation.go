@@ -8,7 +8,7 @@ import (
 func StartInstrumented(port string) {
 
     http.HandleFunc("/", func(rw http.ResponseWriter, req *http.Request) {
-        rw.Header().Add("Content-Type", "application/json")
+        rw.Header().Add("Content-Type", "application/json; charset=utf-8")
         rw.Write([]byte(`{"foo":"bar"}`))
     })
 
