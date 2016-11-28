@@ -8,9 +8,7 @@ import (
 )
 
 func main() {
-
 	AccessProvider("http://127.0.0.1:8090")
-
 }
 
 func AccessProvider(providerUrl string) error {
