@@ -1,0 +1,26 @@
+version: '2'
+      
+services:
+            
+    pact-broker:
+        image: dius/pact_broker
+        environment:
+           - PACT_BROKER_DATABASE_USERNAME=postgres
+           - PACT_BROKER_DATABASE_PASSWORD=postgres
+           - PACT_BROKER_DATABASE_HOST=postgres
+           - PACT_BROKER_DATABASE_NAME=postgres
+        depends_on: 
+           - postgres
+        ports:
+           - 80:80
+
+    postgres:
+        image: postgres:9.6-alpine
+        environment:
+           - POSTGRES_PASSWORD=postgres
+           - POSTGRES_USER=postgres
+        volumes:
+           - /mnt/toom/pgsql-pact-broker:/var/lib/postgresql/data
+
+
+             
